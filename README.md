@@ -3,14 +3,14 @@
 - [Getting Started](#getting-started)
 - [Testing Your Game](#testing-your-game)
 
-## <img src="/docs/media/sparkles.webp" alt="✨" width="28" style="vertical-align:middle;"> Welcome {#welcome}
+## <img src="/media/sparkles.webp" alt="✨" width="28" style="vertical-align:middle;"> Welcome {#welcome}
 
 TODO
 
 ## 🚀 Getting Started {#getting-started}
 
 <video width="240" autoplay muted loop playsinline style="float:left; margin:5px 25px 25px 25px;">
-  <source src="/docs/media/xelly-screen-record.mp4" type="video/mp4">
+  <source src="/media/xelly-screen-record.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 

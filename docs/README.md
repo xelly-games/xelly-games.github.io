@@ -1,7 +1,7 @@
 ## Table of Contents
-- [Section 1](#welcome)
-- [Section 2](#getting-started)
-- [Another Section](#testing-your-game)
+- [Welcome](#welcome)
+- [Getting Started](#getting-started)
+- [Testing Your Game](#testing-your-game)
 
 ## <img src="/docs/media/sparkles.webp" alt="✨" width="28" style="vertical-align:middle;"> Welcome {#welcome}
 

@@ -46,8 +46,6 @@ secrets/
 
 /node_modules
 
-/build
-
 .docusaurus
 .cache-loader
 

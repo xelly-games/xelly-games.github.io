@@ -2,9 +2,11 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Welcome!
+ 
+[xelly.games](https://xelly.games) is a unique social network experience in which games are the core user-generated content.
 
-Let's discover **Docusaurus in less than 5 minutes**.
+TODO TODO
 
 ## Getting Started
 

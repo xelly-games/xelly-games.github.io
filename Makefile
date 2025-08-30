@@ -1,7 +1,11 @@
+.PHONY: clean
+clean:
+	npm run clear
+
 .PHONY: dev
 dev:
-	npx docusaurus start
+	npm run start
 
 .PHONY: build
 build:
-	echo TODO
+	npm run build

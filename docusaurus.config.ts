@@ -20,10 +20,14 @@ const config: Config = {
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
+  // @see https://docusaurus.io/docs/deployment#deploying-to-github-pages
+  // NOTE: we aren't doing standard deployment workflow, we'll always use
+  //  main and configure Pages to use the /build/ folder.
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'xelly-games', // Usually your GitHub org/user name.
   projectName: 'xelly-games.github.io', // Usually your repo name.
+  trailingSlash: false,
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -73,20 +77,21 @@ const config: Config = {
     // Replace with your project's social card
     //image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'xelly.games / Game Maker Docs',
+      //title: 'xelly.games / Game Maker Docs',
       logo: {
         alt: 'Xelly Games Logo',
         src: 'img/xg-square.svg',
       },
       items: [
-        /*{
+        {to: '/', label: 'Home', position: 'left'},
+        {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
           label: 'Tutorial',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
-        */{
+        /*{to: '/blog', label: 'Blog', position: 'left'},*/
+        {
           href: 'https://github.com/xelly-games/xelly.js',
           label: 'GitHub',
           position: 'right',

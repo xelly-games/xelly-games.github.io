@@ -4,6 +4,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+// @see https://docusaurus.io/docs/api/docusaurus-config
+
 const config: Config = {
   title: 'xelly.games',
   tagline: 'The Place to Play',
@@ -29,6 +31,10 @@ const config: Config = {
   projectName: 'xelly-games.github.io', // Usually your repo name.
   trailingSlash: false,
 
+  // OKAY so we can't customize outDir here, but we can customize it no the CLI
+  //   i.e., docusaurus --out-dir docs/ ...
+  // outDir: 'docs', // !!! and note that, below, we re-configure docs plugin to source from /content dir !!!
+
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
@@ -45,6 +51,7 @@ const config: Config = {
       'classic',
       {
         docs: {
+          path: 'content', // instead of default "docs" (see notes above)
           sidebarPath: './sidebars.ts',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.

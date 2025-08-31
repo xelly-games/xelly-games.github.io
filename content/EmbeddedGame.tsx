@@ -15,8 +15,10 @@ export default function EmbeddedGame({src, width}: {
             const params = new URLSearchParams(u.hash.replace(/^#/, ''));
             params.set('id', myId);
             u.hash = params.toString();
+            console.log('[EmbeddedGame]', '<having used>', myId); // todo lose
             return u.toString();
         } catch {
+            console.log('[EmbeddedGame]', '<having excpetionally used>', myId); // todo lose
             return src + (src.includes("#") ? "&" : "#") + "id=" + encodeURIComponent(myId);
         }
     }, [src]);

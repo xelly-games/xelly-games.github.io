@@ -1,0 +1,26 @@
+---
+sidebar_position: 1
+---
+
+import EmbeddedGame from './EmbeddedGame';
+import { urlGameGolfSolitaire, urlGameBreakout } from './well-knowns';
+
+# Welcome
+
+This page describes how to build a game for **[xelly.games](https://xelly.games)**, a unique
+social network experience in which users submit **_"micro games"_** (games less than
+300kb in size) instead of, say, "tweets", videos, or images.
+
+For example, here are two games among many you may find in your xelly.games feed.
+The source code for these games and more are available on
+[GitHub](https://github.com/xelly-games/game-examples):
+
+<div style={{display: 'flex', gap: '10px', flexWrap: 'wrap'}}>
+<EmbeddedGame
+        width={412}
+        src={urlGameGolfSolitaire}/>
+
+    <EmbeddedGame
+        width={412}
+        src={urlGameBreakout}/>
+</div>

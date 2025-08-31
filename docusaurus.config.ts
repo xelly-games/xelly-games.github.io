@@ -91,12 +91,12 @@ const config: Config = {
       },
       items: [
         {to: '/', label: 'Home', position: 'left'},
-        {
+        /*{
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
           label: 'Tutorial',
-        },
+        },*/
         /*{to: '/blog', label: 'Blog', position: 'left'},*/
         {
           href: 'https://github.com/xelly-games/xelly.js',

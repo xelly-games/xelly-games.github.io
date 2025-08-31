@@ -4,8 +4,10 @@ clean:
 
 .PHONY: dev
 dev:
+	# runs docusaurus start, which is dev mode, i.e., process.env.NODE_ENV === 'development'
 	npm run start
 
 .PHONY: build
 build:
+	# runs docusaurus build, which is prod mode, i.e., process.env.NODE_ENV === 'production'
 	npm run build

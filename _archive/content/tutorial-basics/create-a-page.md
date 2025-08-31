@@ -2,20 +2,7 @@
 sidebar_position: 1
 ---
 
-# The Library...
-
-### @xelly/xelly.js
-
-TODO
-
-https://github.com/xelly-games/xelly.js
-
-### The Metadata
-
-TODO
-
-TODO
-
+# Create a Page
 
 Add **Markdown or React** files to `src/pages` to create a **standalone page**:
 

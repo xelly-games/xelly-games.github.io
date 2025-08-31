@@ -22,10 +22,12 @@ export default function EmbeddedGame({src, width}: {
     useEffect(() => {
         const origin = new URL(src).origin;
         const onMsg = (e: MessageEvent) => {
+            console.log('[EmbeddedGame]', 'onMsg', e); // todo lose
             if (e.origin !== origin) {
                 return;
             }
             const d = (e.data || {}) as any;
+            console.log('[EmbeddedGame]', '<data>', d.type, d.id); // todo lose
             if (d.type !== 'xg-embed-size' || d.id !== myId) {
                 return;
             }

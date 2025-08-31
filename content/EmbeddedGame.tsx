@@ -7,6 +7,8 @@ export default function EmbeddedGame({src, width}: {
     const ref = useRef<HTMLIFrameElement>(null);
     const myId = `xg-${Math.random().toString(36).slice(2, 9)}`;
 
+    console.log('[EmbeddedGame]', '<generated>', myId); // todo lose
+
     const finalSrc = useMemo(() => {
         try {
             const u = new URL(src);

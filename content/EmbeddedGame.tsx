@@ -31,7 +31,9 @@ export default function EmbeddedGame({src, width}: {
             if (d.type !== 'xg-embed-size' || d.id !== myId) {
                 return;
             }
+            console.log('[EmbeddedGame]', 'will set'); // todo lose
             if (ref.current) {
+                console.log('[EmbeddedGame]', 'setting'); // todo lose
                 ref.current.style.height = Math.ceil(d.h) + 'px';
             }
         };

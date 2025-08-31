@@ -27,7 +27,7 @@ export default function EmbeddedGame({src, width}: {
                 return;
             }
             const d = (e.data || {}) as any;
-            console.log('[EmbeddedGame]', '<data>', d.type, d.id); // todo lose
+            console.log('[EmbeddedGame]', '<data>', d.type, d.id, myId); // todo lose
             if (d.type !== 'xg-embed-size' || d.id !== myId) {
                 return;
             }

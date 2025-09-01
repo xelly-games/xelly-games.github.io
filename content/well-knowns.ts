@@ -6,3 +6,7 @@ export const urlGameBreakout =
     process.env.NODE_ENV !== 'production'
         ? 'http://localhost:8083/embed/440cd0c4-4eff-4467-9071-337bfed766c2'
         : 'https://xelly.games/embed/2043d642-a556-480e-be5a-8541f8fc147a';
+export const urlGameSudoku =
+    process.env.NODE_ENV !== 'production'
+        ? 'http://localhost:8083/embed/bc9738f3-274f-460d-9fac-0769524f1a55'
+        : 'https://xelly.games/embed/bc9738f3-274f-460d-9fac-0769524f1a55';

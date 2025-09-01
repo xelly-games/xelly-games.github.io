@@ -3,6 +3,10 @@
  * bundles Infima by default. Infima is a CSS framework designed to
  * work well for content-centric websites.
  */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Tiny5&display=swap');*/
+/*@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');*/
 
 /* You can override the default Infima variables here. */
 :root {
@@ -27,4 +31,17 @@
   --ifm-color-primary-lighter: rgb(230,170,255);
   --ifm-color-primary-lightest: rgb(245,200,255);
   --docusaurus-highlighted-code-line-bg: rgba(157,76,247,0.3);
+}
+
+.navbar__title {
+  /*font-family: 'VT323', monospace;*/
+  /*font-family: 'Tiny5', sans-serif;*/
+  /*font-family: 'Press Start 2P', cursive;*/
+  font-family: 'Silkscreen', cursive;
+  color: rgb(157,76,247);
+  /*font-weight: 700; !* bold *!*/
+
+  image-rendering: pixelated;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
 }

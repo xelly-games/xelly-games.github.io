@@ -84,13 +84,13 @@ const config: Config = {
     // Replace with your project's social card
     //image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      //title: 'xelly.games / Game Maker Docs',
+      title: 'xelly.games',
       logo: {
         alt: 'Xelly Games Logo',
         src: 'img/xg-square.svg',
       },
       items: [
-        {to: '/', label: 'Home', position: 'left'},
+        /*{to: '/', label: 'Home', position: 'left'},*/
         /*{
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',

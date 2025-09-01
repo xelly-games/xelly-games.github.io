@@ -11,3 +11,9 @@ dev:
 build:
 	# runs docusaurus build, which is prod mode, i.e., process.env.NODE_ENV === 'production'
 	npm run build
+
+.PHONY: deploy
+deploy: clean build
+	git add .
+	git commit -m 'deploy'
+	git push

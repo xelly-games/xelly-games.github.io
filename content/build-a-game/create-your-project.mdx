@@ -84,7 +84,9 @@ than `300kb`, the current size limit for xelly.games games.
 
 ## `rollup.config.mjs`
 
-This file is important. We use Rollup to bundle our game into _**a single output 
+This file is important.
+
+We use [Rollup](https://rollupjs.org/) to bundle our game into _**a single output
 file**_ (`bundle.js`) that you will upload to **[xelly.games](https://xelly.games)** when you are
 ready to post your game.
 
@@ -110,6 +112,12 @@ export default {
     }
 };
 ```
+
+:::note
+We configure Rollup here to **"externalize"** the `excalibur` and `@xelly/xelly.js`
+dependencies so that they are not included in the final `bundle.js` file. These
+dependencies are provided at runtime by the xelly.games platform.
+:::
 
 ## `tsconfig.json`
 

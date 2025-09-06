@@ -1,0 +1,124 @@
+---
+sidebar_position: 3
+title: Hello World!
+hide_title: true
+---
+
+<h1 style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+    <img
+        src="/assets/wired-outline-735-world-globe-hover-roll.webp"
+        alt="world animation"
+        width="48"
+        height="48"
+        style={{ display: 'block' }}
+    />
+    <span>Hello World!</span>
+</h1>
+
+Okay, so you've got your core project set up.
+
+Let's start coding!
+
+:::note
+You can also find the source code for this example
+[here](https://github.com/xelly-games/game-examples/tree/main/hello-world).
+:::
+
+## Create a `src/main.ts` File
+
+Create a `src` directory and add a `main.ts` file:
+
+```
+your-game-project/
+    package.json
+    rollup.config.mjs
+    tsconfig.json
+    src/
+        main.ts
+```
+
+```typescript title="src/main.ts"
+import * as xel from '@xelly/xelly.js';
+import {
+    XellyContext,
+    XellyGameType,
+    XellyInstallFunction,
+    XellyMetadata
+} from '@xelly/xelly.js';
+import {Color, Engine, Font, FontUnit, Label, vec} from 'excalibur';
+
+const font24 = new Font({
+    color: Color.Black,
+    family: 'system-ui, sans-serif',
+    unit: FontUnit.Px,
+    size: 24
+});
+
+/** Metadata. */
+export const metadata: XellyMetadata = {
+    type: XellyGameType.Passive
+};
+
+/** Install. */
+export const install: XellyInstallFunction = (context: XellyContext, engine: Engine) => {
+    const message = "Hello, world!";
+    const messageDimensions = font24.measureText(message);
+    engine.add(new Label({
+        text: "Hello, world!",
+        font: font24,
+        pos: vec(
+            (engine.drawWidth - messageDimensions.width) / 2,
+            (engine.drawHeight - messageDimensions.height) / 2),
+    }));
+};
+```
+
+Before we dig in and explain things here, let's build and run our "game"
+(it's just a Hello World! message for now):
+
+## Build and Run the Game
+
+### Build
+
+Run `npm run build` in the root of your project. You should see something like this:
+
+```
+$ npm run build
+
+> your-game-project@1.0.0 build
+> npm run clean && npm run build:rollup
+
+
+> your-game-project@1.0.0 clean
+> rm -rf dist dist/tsconfig.tsbuildinfo && echo 'cleaned!'
+
+cleaned!
+
+> your-game-project@1.0.0 build:rollup
+> rollup -c
+
+src/main.ts → dist/bundle.js...                                                                                                                                                                                               
+created dist/bundle.js in 513ms
+```
+
+### Run
+
+Now that we have a `dist/bundle.js` file, we can test it out using the
+**xelly.games "utility" tool**. 
+
+Visit
+[https://xelly.games/utility](https://xelly.games/utility),
+and upload your `dist/bundle.js` file.
+
+:::note
+**Nothing is actually uploaded** to any remote servers by this tool. The tool uses
+`FileReader.readAsText` (see [docs](https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsText))
+to read the file _locally_ on your computer and render it for you to test it.
+:::
+
+You should see something like this, which is your game running as it would in
+a xelly.games feed:
+
+<p style={{textAlign: "center", border: "1px solid #ccc"}}>
+![Hello World](./img/ss-hello-world.png)
+</p>

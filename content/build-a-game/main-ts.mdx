@@ -1,0 +1,117 @@
+---
+sidebar_position: 4
+title: The main.ts File
+hide_title: true
+---
+
+<h1 style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+    <img
+        src="/assets/wired-outline-743-web-code-hover-pinch.webp"
+        alt="web code animation"
+        width="48"
+        height="48"
+        style={{ display: 'block' }}
+    />
+    <span>The `main.ts` File</span>
+</h1>
+
+Let's take a look at each section of our `main.ts` file.
+
+## Imports
+
+First, our `import` statements:
+
+```typescript title="src/main.ts"
+import * as xel from '@xelly/xelly.js';
+import {
+    XellyContext,
+    XellyGameType,
+    XellyInstallFunction,
+    XellyMetadata
+} from '@xelly/xelly.js';
+import {Color, Engine, Font, FontUnit, Label, vec} from 'excalibur';
+
+// ...
+```
+
+- Note that we can import the full extent of classes from 
+[Excalibur](https://excaliburjs.com) to build out our games.
+- `import * as xel` is the proper way to import the [xelly.js](https://github.com/xelly-games/xelly.js) library
+utilities.
+
+## Metadata
+
+The **[xelly.games](https://xelly.games)** platform needs to know a few things
+about your game in order to render it properly in a feed.
+
+Therefore, all games must export a `metadata` object:
+
+```typescript title
+// ...
+
+/** Metadata. */
+export const metadata: XellyMetadata = {
+    type: XellyGameType.Passive
+};
+
+// ...
+```
+
+Here, we indicate that our game is a **"passive"** game, i.e., that it is not 
+interactive. Since this was our "Hello World" example, there's no interactivity
+yet, so `XellyGameType.Passive` is the correct choice here.
+
+The other types are:
+
+- `XellyGameType.TurnBased`
+  - This is for games that are played in a turn-based fashion; board, card/solitaire
+    games, for example. The xelly.games platform allows `TurnBased` games to accept
+    touch/click events. A pause button won't be rendered for these games.
+- `XellyGameType.Realtime`
+  - This is for "action"-like games that are played in real-time (e.g., flappy
+    bird, breakout, arcade style games, etc). A pause button will be rendered 
+    for these games, and these games will be auto-paused if a user
+    scrolls away "mid play". These games also can "terminate" (for example, if 
+    the player character dies) and users will then be able to restart the game.
+- `XellyGameType.Interactive`
+  - Interactive games are less common. These are games that are action-oriented
+    like realtime games but they never terminate. These games allow the user to
+    interact with the content but with no termination or win/lose state. 
+
+## The `install` function
+
+All games must export an `install` function. The **[xelly.games](https://xelly.games)**
+platform will call this function when the game is loaded (or when the user requests to 
+reset/restart the game).
+
+- An [Excalibur](https://excaliburjs.com) `engine` instance is passed to this 
+  function. You will never instantiate an `Engine` yourself. The platform will
+  configure and install one for you before `install`-ing your game.
+- In our "Hello World" example, we only add a single `Entity` to the engine, a
+  `Label` that says "Hello, world!". Note that `Label` instances are always 
+  positioned relative to their top-left corner, so we do a little simple math
+  to center the `Label` on the screen:
+
+```typescript title
+// ...
+
+/** Install. */
+export const install: XellyInstallFunction = (context: XellyContext, engine: Engine) => {
+    const message = "Hello, world!";
+    const messageDimensions = font24.measureText(message);
+    engine.add(new Label({
+        text: "Hello, world!",
+        font: font24,
+        pos: vec(
+            (engine.drawWidth - messageDimensions.width) / 2,
+            (engine.drawHeight - messageDimensions.height) / 2),
+    }));
+};
+
+// ...
+```
+
+That's it for "Hello World"!
+
+Move on to the next section to learn how to build more intricate
+and interactive game experiences for **[xelly.games](https://xelly.games)**.

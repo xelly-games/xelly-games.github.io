@@ -84,7 +84,7 @@ const config: Config = {
     // Replace with your project's social card
     //image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'xelly.games',
+      title: 'xelly.games / docs',
       logo: {
         alt: 'Xelly Games Logo',
         src: 'img/xg-square.svg',
@@ -99,10 +99,15 @@ const config: Config = {
         },*/
         /*{to: '/blog', label: 'Blog', position: 'left'},*/
         {
+          href: 'https://xelly.games',
+          label: 'xelly.games',
+          position: 'right',
+        },
+        /*{
           href: 'https://github.com/xelly-games/xelly.js',
           label: 'GitHub',
           position: 'right',
-        },
+        },*/
       ],
     },
     footer: {

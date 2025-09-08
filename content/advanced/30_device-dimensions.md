@@ -1,5 +1,0 @@
----
-title: Device Dimensions
----
-
-TODO

@@ -15,10 +15,6 @@ hide_title: true
     <span>Hello World!</span>
 </h1>
 
-Okay, so you've got your core project set up.
-
-Let's start coding!
-
 :::note
 You can also find the source code for this example
 [here](https://github.com/xelly-games/game-examples/tree/main/hello-world).
@@ -73,10 +69,13 @@ export const install: XellyInstallFunction = (context: XellyContext, engine: Eng
 };
 ```
 
-Before we dig in and explain things here, let's build and run our "game"
-(it's just a Hello World! message for now):
+This is a simple "Hello, world!" example. It renders a "Hello, world!"
+in the center of the screen.
 
-## Build and Run the Game
+Before we dig in and explain each part, let's
+**build** and **run** our "game".
+
+## Run the Game
 
 ### Build
 
@@ -104,21 +103,19 @@ created dist/bundle.js in 513ms
 ### Run
 
 Now that we have a `dist/bundle.js` file, we can test it out using the
-**xelly.games "utility" tool**. 
+**xelly.games ["utility"](https://xelly.games/utility) tool**.
 
 Visit
 [https://xelly.games/utility](https://xelly.games/utility),
 and upload your `dist/bundle.js` file.
 
 :::note
-**Nothing is actually uploaded** to any remote servers by this tool. The tool uses
-`FileReader.readAsText` (see [docs](https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsText))
+**Nothing is actually uploaded** to any remote servers by this tool.
+
+The tool uses
+`FileReader.readAsText` (see [these MDN docs](https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsText))
 to read the file _locally_ on your computer and render it for you to test it.
 :::
 
-You should see something like this, which is your game running as it would in
-a xelly.games feed:
-
-<p style={{textAlign: "center", border: "1px solid #ccc"}}>
-![Hello World](./img/ss-hello-world.png)
-</p>
+If you followed the steps correctly, you should see "Hello, world!"
+rendered by your game _as it would be rendered_ in a xelly.games feed.

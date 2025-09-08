@@ -1,0 +1,30 @@
+---
+title: Sandboxing
+---
+
+Games on xelly.games are
+[sandboxed](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/iframe#sandbox)
+via `<iframe allow-scripts .../>`.
+
+All this means is that the TypeScript/Javascript of your game is limited in what
+it can do. This includes not being able to make network calls, use `fetch`,
+form `POST`, etc.
+
+It also means you can't:
+
+- Access cookies or local storage from the parent domain
+- Access the parent window or its DOM
+- Create new windows or popups
+- Use browser features that require permissions (geolocation, notifications, etc.)
+- Manipulate the URL fragment or history
+
+:::warning
+Because you can't make network calls from your code, your entire game must be
+deployed as a
+[_single_ built file](../build-a-game/create-your-project.mdx#rollupconfigmjs), and
+any resources such as graphics, sprites, spritesheets, fonts, etc. must be
+bundled into the built output file (typically, `bundle.js`).
+
+See [Images and Fonts](./images-and-fonts) for how to compile sprites and fonts
+into your games.
+:::

@@ -15,9 +15,7 @@ hide_title: true
     <span>Create Your Project</span>
 </h1>
 
-Before starting any new creative project, we gotta "stretch our canvas", first, so to speak.
-
-This part is easy. You'll need to create an **empty directory** with just three files:
+This part is easy. Create an **empty directory** with just three files:
 
 ```
 your-game-project/
@@ -26,14 +24,15 @@ your-game-project/
     tsconfig.json
 ```
 
-(First &mdash; if you don't already have Node with `npm` installed, make sure
-you **[install it](https://nodejs.org/en/download/)** before proceeding.)
+(If you don't already have [Node](https://nodejs.org/)
+with `npm` installed, make sure you **[install it](https://nodejs.org/en/download/)**
+before proceeding.)
 
-Now, here are the **three project files** you'll need at the root of your project directory:
+Here are the **three** project files you'll need at the root of your project directory:
 
 ## `package.json`
 
-The only thing you need to fill in is the `name` field:
+The only thing you need to change here is the `name` field:
 
 ```json title="package.json"
 {
@@ -66,20 +65,23 @@ The only thing you need to fill in is the `name` field:
 }
 ```
 
-☝️ Then make sure you run `npm install` in your project directory.
+:::tip
+☝️ Then make sure you run **`npm install`** in your project directory.
+:::
 
-### A Note on Dependencies
+### Dependencies
 
 Note that we've started with two `"dependencies"`:
 
-- `excalibur`, xelly games are built on top of [excaliburjs](https://excaliburjs.com),
+- `excalibur`: xelly games are built on top of [ExcaliburJS](https://excaliburjs.com),
 a performant and versatile JavaScript game engine.
-- `@xelly/xelly.js` is the official SDK for xelly.games
+- `@xelly/xelly.js`: the official SDK for xelly.games
 
 :::tip
 Both of these are required, but you can add other dependencies as
 long as your final game (i.e., `bundle.js` file) is no larger
-than `300kb`, the current size limit for xelly.games games.
+than `300kb`, which is the current size limit for games uploaded to
+xelly.games.
 :::
 
 ## `rollup.config.mjs`
@@ -137,4 +139,4 @@ dependencies are provided at runtime by the xelly.games platform.
 }
 ```
 
-Now we're ready to start coding our game!
+With these three files in our root directory, we're ready to start coding our game!

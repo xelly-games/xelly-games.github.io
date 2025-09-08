@@ -84,7 +84,7 @@ const config: Config = {
     // Replace with your project's social card
     //image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'xelly.games / docs',
+      title: 'xelly.games / make a game!',
       logo: {
         alt: 'Xelly Games Logo',
         src: 'img/xg-square.svg',

@@ -7,7 +7,8 @@ hide_title: true
 import EmbeddedGame from '../EmbeddedGame';
 import {
     urlGameBreakout,
-    urlGameFlappyBird
+    urlGameFlappyBird,
+    urlGameWordZap
 } from '../well-knowns';
 
 <h1 style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -44,7 +45,9 @@ We at **xelly.games** would love to see more games with this aesthetic, with a
 focus on game play over graphics. (Maybe it's because we miss
 our old [Game Boys](https://en.wikipedia.org/wiki/Game_Boy).)
 In any case, we've added first-class support for making games like this to the
-`@xelly/xelly.js` SDK!
+[`@xelly/xelly.js` SDK](https://github.com/xelly-games/xelly.js)!
+
+## `xel.graphics.fromSprite`
 
 ```typescript title="main.ts"
 import * as xel from '@xelly/xelly.js';
@@ -126,3 +129,35 @@ Whenever you use pixelized sprite graphics created with `xel.graphics.fromSprite
 the platform will choose a random color (from a predefined pallete) for your sprite
 pixels. This reduces monotony in feeds with many pixelized games.
 :::
+
+## Built-in Widgets
+
+### Keyboard
+
+The [`@xelly/xelly.js` SDK](https://github.com/xelly-games/xelly.js) comes with a
+pixelized `Keyboard` widget that you can use in your games:
+
+```typescript title="main.ts"
+import { Keyboard, ... } from '@xelly/xelly.js';
+
+// ...
+
+export const install: XellyInstallFunction
+    = (context: XellyContext, engine: Engine) => {
+    const keyboard = new Keyboard(context, {
+        minimizer: false,
+        animateDepressedKeys: true
+    });
+    engine.add(keyboard);
+    // ...
+}
+```
+
+The example word zap game ([source code](https://github.com/xelly-games/game-examples/tree/main/word-zap))
+uses this widget:
+
+<div style={{display: 'flex', gap: '10px', flexWrap: 'wrap', margin: '25px'}}>
+    <EmbeddedGame
+        width={412}
+        src={urlGameWordZap}/>
+</div>

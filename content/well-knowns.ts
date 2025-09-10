@@ -18,3 +18,7 @@ export const urlGameFlappyBird =
     process.env.NODE_ENV !== 'production'
         ? 'http://localhost:8083/embed/e1c6282e-3de1-4537-9809-6f872cff69fb'
         : 'https://xelly.games/embed/7c7744cd-a302-42de-9d8e-5eade3a8b723';
+export const urlGameWordZap =
+    process.env.NODE_ENV !== 'production'
+        ? 'http://localhost:8083/embed/9d040148-0517-4066-92b8-0061ea5363b4'
+        : 'https://xelly.games/embed/9d040148-0517-4066-92b8-0061ea5363b4';

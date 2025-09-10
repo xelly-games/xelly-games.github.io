@@ -1,5 +1,0 @@
----
-title: "\"Pixelized\" Games"
----
-
-TODO

@@ -1,0 +1,145 @@
+---
+title: Game Resources
+description: You can include sprites and fonts in your games!
+hide_title: true
+---
+
+<h1 style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+    <img
+        src={require('../../static/assets/wired-outline-962-social-media-marketing-hover-pinch.webp').default}
+        alt="excaliburjs logo"
+        width="48"
+        height="48"
+        style={{ display: 'block' }}
+    />
+    <span>Game Resources</span>
+</h1>
+
+As [mentioned](./sandboxed), your game is not permitted to make 
+network requests. This means that it can't asynchronously load 
+resources such as images, sprites, fonts, or libraries. Any
+resources needed by your game must be bundled into the game itself,
+i.e., into the final build [output file](../build-a-game/create-your-project.mdx#rollupconfigmjs),
+`bundle.js`.
+
+## Images &amp; Sprites
+
+[ExcaliburJS](https://excaliburjs.com/) uses [`ImageSource`](https://excaliburjs.com/docs/imagesource) to 
+represent and load images. To bundle an image resource into your game, 
+you need to import it as a base64-encoded 
+**[data URI](https://developer.mozilla.org/en-US/docs/Web/URI/Reference/Schemes/data)**.
+
+To do this, first encode your image as a **base64 string**. You can find free base64
+encoders online; or, on a Mac or Linux machine, for example, you can use
+the `base64` command (i.e.,, `base64 -i my-image.png`).
+
+Once you have the base64-encoded string for your image file, you can then copy 
+it into a TypeScript-importable file &mdash; for example, if your image was an
+SVG file:
+
+```typescript title="my-image.svg.ts"
+export default 'data:image/svg+xml;base64,<base64 encoded svg>';
+```
+
+Or, for a PNG file (note the `image/png` MIME type):
+
+``` typescript title="my-image.png.ts"
+export default 'data:image/png;base64,<base64 encoded png>';
+```
+Now we can import our image resource into our game and use it as a 
+[graphic](https://excaliburjs.com/docs/graphics)
+on an `Actor`: 
+
+```typescript title="main.ts"
+import { ..., ImageSource, ... } from 'excalibur';
+import myImage from './my-image.svg'; // imports the my-image.svg.ts file
+
+const myImageSource = new ImageSource(myImage);
+
+const loadImgResources = () => {
+    return Promise.all([myImageSource.load()]);
+};
+
+export const install: XellyInstallFunction
+    = (context: XellyContext, engine: Engine) => {
+    
+    const desiredWidth = 50;
+
+    loadImgResources().then(() => {
+        const myActor = new Actor({
+            anchor: Anchor.Zero,
+            scale: vec(desiredWidth / sprite.width, desiredWidth / sprite.width)
+        });
+        myActor.graphics.use(myImageSource.toSprite());
+        engine.add(myActor);
+    });
+    
+}
+```
+
+## Spritesheets
+
+We can also create a [`SpriteSheet`](https://excaliburjs.com/docs/spritesheets) from 
+an [`ImageSource`](https://excaliburjs.com/docs/imagesource):
+
+```typescript
+import { ..., ImageSource, SpriteSheet, ... } from 'excalibur';
+import mySpriteSheet from './my-sprite-sheet.png';
+
+const mySpriteSheetImageSource = new ImageSource(mySpriteSheet);
+
+...
+
+loadImgResources().then(() => {
+    const sheet = SpriteSheet.fromImageSource(mySpriteSheetImageSource);
+    // ...
+};
+
+...
+```
+
+## Fonts
+
+```typescript
+import { ..., Font, ... } from 'excalibur';
+import myFont from './MyFont.woff';
+
+const myFontFace = new FontFace('MyFont', `url(${myFont})`);
+
+export const install: XellyInstallFunction
+    = (context: XellyContext, engine: Engine) => {
+
+    myFontFace.load().then((loaded) => {
+        document.fonts.add(loaded);
+
+        const myFont = new Font({
+            color: Color.Purple,
+            size: 14,
+            family: 'MyFont',
+            unit: FontUnit.Px
+        });
+        
+        engine.add(new Label({
+            text: "Hello, world!",
+            font: myFont,
+            pos: vec(
+                (engine.drawWidth - messageDimensions.width) / 2,
+                (engine.drawHeight - messageDimensions.height) / 2),
+        }));
+    });
+}
+```
+
+## Third-party libraries
+
+You can bundle third-party libraries with your game, as long as your final game
+file isn't larger than the 300kb limit.
+
+(For example, the [example sudoku game](https://github.com/xelly-games/game-examples/tree/main/sudoku-hi-res) uses the 
+[@algorithm.ts/sudoku](https://www.npmjs.com/package/@algorithm.ts/sudoku) to generate
+game puzzles.)
+
+With our [rollup config](../build-a-game/create-your-project.mdx#rollupconfigmjs), 
+any third-party libraries besides [ExcaliburJS](https://excaliburjs.com/) and
+[xelly.js](https://github.com/xelly-games/xelly.js) (which are provided by the 
+platform) will automatically get bundled when you run `npm run build`.

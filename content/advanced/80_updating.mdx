@@ -1,0 +1,94 @@
+---
+title: Updating Your Game
+description: No one's perfect.
+hide_title: true
+---
+
+import { Archive, PencilLine, Replace } from 'lucide-react';
+
+<h1 style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+    <img
+        src={require('../../static/assets/wired-outline-409-tool-hover-oscillate.webp').default}
+        alt="excaliburjs logo"
+        width="48"
+        height="48"
+        style={{ display: 'block' }}
+    />
+    <span>Updating Your Game</span>
+</h1>
+
+It will be common to want to update and/or fix your game after it's been submitted
+and approved &mdash; i.e., to fix bugs, add some nice animations or transitions,
+improve the user experience, or just make the game a little bit better.
+
+Of course you could just delete your game and submit a new version but then
+your users will lose all the bookmarks, likes, and plays of your game.
+
+Here's how you do an "in-place" update to your game:
+
+## Steps
+
+1.  On your profile,
+click the pen icon (<PencilLine size={16} color={"#3B82F6"}/>) to the right
+of the tabs. Then
+click the **update/replace** icon (<Replace size={16}/>) to the right
+of the game you wish to replace:
+
+<div style={{
+    display: "inline-block",
+    border: "5px solid #FF69B4",
+    borderRadius: "10px",
+    padding: "10px",
+    margin: "10px"
+}}>
+    ![Approved Annotated](./img/approved-annotated.png)
+</div>
+
+2. Upload the new version of your game. (Note that you will not be able to
+change the [aspect ratio](./device-dimensions#aspect-ratio) or description of your game.)
+
+<div style={{
+    display: "inline-block",
+    border: "5px solid #FF69B4",
+    borderRadius: "10px",
+    padding: "10px",
+    margin: "10px"
+}}>
+    ![Replace](./img/replace.png)
+</div>
+
+3. Your new game version will then be **waiting moderation**. The current game version
+will continue to serve for users until your new version is approved.
+
+<div style={{
+    display: "inline-block",
+    border: "5px solid #FF69B4",
+    borderRadius: "10px",
+    padding: "10px",
+    margin: "10px"
+}}>
+    ![Replaced](./img/replaced.png)
+</div>
+
+4. Once your new version is approved, you'll see it reflected in your submitted
+list:
+
+<div style={{
+    display: "inline-block",
+    border: "5px solid #FF69B4",
+    borderRadius: "10px",
+    padding: "10px",
+    margin: "10px"
+}}>
+    ![Replaced Approved](./img/replaced-approved.png)
+</div>
+
+## Also Note
+
+* You should only update your game if you have made moderate changes to it &mdash;
+    for example, bug fixes, usability enhancements and fixes, etc. If your new
+    version is substantially different, you should submit a new game. Your update
+    may not be approved if the changes are too drastic.
+* If you've submitted a game that's not yet been approved but you want to make
+    changes to it before it is approved, just delete the game using the
+    archive icon (<Archive size={16}/>) and upload your new version as a new game.

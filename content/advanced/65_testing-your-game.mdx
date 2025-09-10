@@ -1,0 +1,36 @@
+---
+title: Testing Your Game
+description: Here's a workflow for developing and testing your game.
+hide_title: true
+---
+
+<h1 style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+    <img
+        src={require('../../static/assets/wired-outline-1243-chemistry-hover-pinch.webp').default}
+        alt="excaliburjs logo"
+        width="48"
+        height="48"
+        style={{ display: 'block' }}
+    />
+    <span>Testing Your Game</span>
+</h1>
+
+Here's a workflow for developing and testing your game.
+
+1. While actively coding, build your game in "watch mode":
+
+```bash
+$ npm run watch
+```
+
+2. As you make code changes, the game will automatically rebuild `dist/bundle.js`.
+You can upload this file to [**xelly.games/utility**](https://xelly.games/utility)
+to test your changes out. You'll have to re-upload it each time you want refresh
+it. (Note that this is a local-only tool; your game is not uploaded by this tool
+to xelly.games or anywhere else.)
+
+3. When your game is live and running on a social feed, `console.log` is disabled, but the
+   utility tool _will_ allow logs to the console which may be helpful for debugging
+   your game as you develop it.
+
+4. Once you're happy with your game, you can [submit it](./submitting) from your profile.

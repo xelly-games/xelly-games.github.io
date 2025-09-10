@@ -14,3 +14,7 @@ export const urlGameSudoku =
     process.env.NODE_ENV !== 'production'
         ? 'http://localhost:8083/embed/bc9738f3-274f-460d-9fac-0769524f1a55'
         : 'https://xelly.games/embed/bc9738f3-274f-460d-9fac-0769524f1a55';
+export const urlGameFlappyBird =
+    process.env.NODE_ENV !== 'production'
+        ? 'http://localhost:8083/embed/e1c6282e-3de1-4537-9809-6f872cff69fb'
+        : 'https://xelly.games/embed/7c7744cd-a302-42de-9d8e-5eade3a8b723';

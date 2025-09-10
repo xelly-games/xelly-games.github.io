@@ -4,6 +4,11 @@ description: For those retro feels.
 hide_title: true
 ---
 
+import EmbeddedGame from '../EmbeddedGame';
+import {
+    urlGameBreakout,
+    urlGameFlappyBird
+} from '../well-knowns';
 
 <h1 style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
     <img
@@ -16,5 +21,108 @@ hide_title: true
     <span>"Pixelized" Games</span>
 </h1>
 
+[**@jules**](https://xelly.games/profile/jules) on **[xelly.games](https://xelly.games)** likes to make games
+with a "pixelized" look; here are two &mdash; flappy bird and breakout
+ported from [the ExcaliburJS tutorial games](https://excaliburjs.com/docs/category/tutorial):
 
-TODO
+<div style={{display: 'flex', gap: '10px', flexWrap: 'wrap', margin: '25px'}}>
+    <EmbeddedGame
+        width={412}
+        src={urlGameFlappyBird}/>
+
+    <EmbeddedGame
+        width={412}
+        src={urlGameBreakout}/>
+</div>
+
+:::note
+The source code for these two and other "pixelized" games can be found on
+[GitHub](https://github.com/xelly-games/game-examples).
+:::
+
+We at **xelly.games** would love to see more games with this aesthetic, with a
+focus on game play over graphics. (Maybe it's because we miss
+our old [Game Boys](https://en.wikipedia.org/wiki/Game_Boy).)
+In any case, we've added first-class support for making games like this to the
+`@xelly/xelly.js` SDK!
+
+```typescript title="main.ts"
+import * as xel from '@xelly/xelly.js';
+import {
+    XellyContext,
+    XellyGameType,
+    XellyInstallFunction,
+    XellyMetadata
+} from '@xelly/xelly.js';
+import {Actor, Color, Engine, Font, FontUnit, Label, vec, Vector} from 'excalibur';
+
+// ...
+
+// define your "pixelated" sprite as a 2D array of [x, y]
+// coordinates with [0,0] being the top left
+const SkullSprite: [number, number][] = [
+    [0, 2], [0, 3], [0, 4], [0, 5],
+    [1, 1], [1, 6],
+    [2, 0], [2, 2], [2, 3], [2, 7], [2, 8],
+    [3, 0], [3, 2], [3, 3], [3, 8],
+    [4, 0], [4, 5], [4, 7], [4, 8],
+    [5, 0], [5, 2], [5, 3], [5, 8],
+    [6, 0], [6, 2], [6, 3], [6, 7], [6, 8],
+    [7, 1], [7, 6],
+    [8, 2], [8, 3], [8, 4], [8, 5],
+];
+
+// ...
+
+export const install: XellyInstallFunction
+    = (context: XellyContext, engine: Engine) => {
+
+    // add pixelated skull to top left of screen
+    const skull = new Actor({
+        anchor: Vector.Zero
+    });
+    skull.graphics.use(xel.graphics.fromSprite(context, SkullSprite));
+    engine.add(skull);
+}
+```
+
+<div style={{
+    display: "inline-block",
+    padding: "10px"
+}}>
+    ![Skull](./img/skull.png)
+</div>
+
+We can position (e.g., center) the skull using the dimensions of the graphic produced by `xel.graphics.fromSprite`:
+
+```typescript title="main.ts"
+    // ...
+    const skull = new Actor({
+        anchor: Vector.Zero
+    });
+    const skullGraphic = xel.graphics.fromSprite(context, SkullSprite);
+    skull.graphics.use(skullGraphic);
+    skull.pos = vec(
+        // using Math.floor() to produce integral coordinates gives a
+        //  cripser render on some screens!!!
+        Math.floor((engine.drawWidth - skullGraphic.width) / 2),
+        Math.floor((engine.drawHeight - skullGraphic.height) / 2));
+    engine.add(skull);
+    // ...
+```
+
+<div style={{
+    display: "inline-block",
+    padding: "10px"
+}}>
+    ![Skull Centered](./img/skull-centered.png)
+</div>
+
+That's it! Just a factory for creating pixelized "sprites"/graphics that we can
+use for our games.
+
+:::note
+Whenever you use pixelized sprite graphics created with `xel.graphics.fromSprite`,
+the platform will choose a random color (from a predefined pallete) for your sprite
+pixels. This reduces monotony in feeds with many pixelized games.
+:::

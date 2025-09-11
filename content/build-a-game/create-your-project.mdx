@@ -67,19 +67,20 @@ The only thing you need to change here is the `name` field:
 ```
 
 :::tip
-☝️ Then make sure you run **`npm install`** in your project directory.
+☝️ Make sure you run **`npm install`** in your project directory after
+creating this `package.json` file.
 :::
 
 ### Dependencies
 
-Note that we've started with two `"dependencies"`:
+Note that we've started out with two `"dependencies"`:
 
 - `excalibur`: xelly games are built on top of [ExcaliburJS](https://excaliburjs.com),
 a performant and versatile JavaScript game engine.
 - `@xelly/xelly.js`: the official SDK for xelly.games
 
 :::tip
-Both of these are required, but you can add other dependencies as
+These two are required, but you can add other dependencies as
 long as your final game (i.e., `bundle.js` file) is no larger
 than `300kb`, which is the current size limit for games uploaded to
 xelly.games.
@@ -90,7 +91,8 @@ xelly.games.
 This file is important.
 
 We use [Rollup](https://rollupjs.org/) to bundle our game into _**a single output
-file**_ (`bundle.js`) that you will upload to **[xelly.games](https://xelly.games)** when you are
+file**_ (`bundle.js`; an [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) module, to be specific)
+that you will upload to **[xelly.games](https://xelly.games)** when you are
 ready to post your game.
 
 ```js title="rollup.config.mjs"
@@ -140,4 +142,6 @@ dependencies are provided at runtime by the xelly.games platform.
 }
 ```
 
-With these three files in our root directory, we're ready to start coding our game!
+That's it!
+
+With these three files in our project's root directory, we're ready to start coding our game!

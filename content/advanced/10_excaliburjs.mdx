@@ -85,7 +85,8 @@ This gets us a purple ball in the center of the game screen.
 
 The `Actor` type represents more than just the visual thing to draw on the screen &mdash;
 it also encapsulates position, motion (linear and angular velocity and
-acceleration), collision detection, and input/output.
+acceleration), collision detection, and input/output &mdash; all the cool
+stuff you need to make a game.
 
 ## Graphics
 
@@ -97,7 +98,7 @@ i.e., by specifying a `radius` and `color` when we construct the actor, Excalibu
 automatically creates a `Circle` graphic and sets it on the Actor for us.
 
 When developing games it can be helpful to use this cheat to quickly get something
-rendering and moving on the screen, but typically we will want to set the Actor's
+rendering and moving on the screen (as a placeholder, say), but typically we will want to set the Actor's
 graphic explicitly to something like a [`Sprite`](https://excaliburjs.com/docs/sprites)
 or [`Animation`](https://excaliburjs.com/docs/animation) or other.
 
@@ -170,5 +171,7 @@ If you don't update your `metadata` export to set `type` to `XellyGameType.Realt
 you will find that the tap handling doesn't work!
 :::
 
-Now you might say we have a game! Click on the purple ball before it leaves the
-screen forever! 😱
+Hey, [would you look at that](https://www.youtube.com/watch?v=EF8GhC-T_Mo)?
+We've built our first real game! It's called
+"Stop the Purple Ball" and maybe
+it's not ready to go viral yet but it's a start, ain't it?

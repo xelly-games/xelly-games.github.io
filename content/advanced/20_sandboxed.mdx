@@ -16,12 +16,11 @@ hide_title: true
 </h1>
 
 Games on xelly.games are
-[sandboxed](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/iframe#sandbox)
-via `<iframe allow-scripts .../>`.
+[sandboxed](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/iframe#sandbox)&#185;.
 
-All this means is that the TypeScript/Javascript of your game is limited in what
-it can do. This includes not being able to make network calls, use `fetch`,
-form `POST`, etc.
+This means that your game code is limited in what
+it can do with its browser resources. Most importantly, this includes not being able to
+make network calls (use `fetch`, form `POST`, etc).
 
 It also means you can't:
 
@@ -34,10 +33,14 @@ It also means you can't:
 :::warning
 Because you can't make network calls from your code, your entire game must be
 deployed as a
-[_single_ built file](../build-a-game/create-your-project.mdx#rollupconfigmjs), and
+[_single_ build file](../build-a-game/create-your-project.mdx#rollupconfigmjs), and
 any resources such as graphics, sprites, spritesheets, fonts, etc. must be
 bundled into the built output file (typically, `bundle.js`).
 
-See [Images and Fonts](./images-and-fonts) for how to compile sprites and fonts
+See [Game Resources](./images-and-fonts) for how to compile sprites and fonts
 into your games.
 :::
+
+<hr/>
+
+&#185; Via `<iframe allow-scripts .../>`.

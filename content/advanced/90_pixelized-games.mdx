@@ -22,11 +22,11 @@ import {
     <span>"Pixelized" Games</span>
 </h1>
 
-[**@jules**](https://xelly.games/profile/jules) on **[xelly.games](https://xelly.games)** likes to make games
+[**@jules**](https://xelly.games/profile/jules) on **[xelly.games](https://xelly.games)** makes games
 with a "pixelized" look; here are two &mdash; flappy bird and breakout
 ported from [the ExcaliburJS tutorial games](https://excaliburjs.com/docs/category/tutorial):
 
-<div style={{display: 'flex', gap: '10px', flexWrap: 'wrap', margin: '25px'}}>
+<div style={{display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '25px'}}>
     <EmbeddedGame
         width={412}
         src={urlGameFlappyBird}/>
@@ -45,7 +45,8 @@ We at **xelly.games** would love to see more games with this aesthetic, with a
 focus on game play over graphics. (Maybe it's because we miss
 our old [Game Boys](https://en.wikipedia.org/wiki/Game_Boy).)
 In any case, we've added first-class support for making games like this to the
-[`@xelly/xelly.js` SDK](https://github.com/xelly-games/xelly.js)!
+[`@xelly/xelly.js` SDK](https://github.com/xelly-games/xelly.js) via the
+`xel.graphics.fromSprite` function...
 
 ## `xel.graphics.fromSprite`
 
@@ -156,7 +157,7 @@ export const install: XellyInstallFunction
 The example word zap game ([source code](https://github.com/xelly-games/game-examples/tree/main/word-zap))
 uses this widget:
 
-<div style={{display: 'flex', gap: '10px', flexWrap: 'wrap', margin: '25px'}}>
+<div style={{display: 'flex', gap: '10px', flexWrap: 'wrap'}}>
     <EmbeddedGame
         width={412}
         src={urlGameWordZap}/>

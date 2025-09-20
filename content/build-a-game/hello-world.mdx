@@ -74,7 +74,7 @@ This is a simple "Hello, world!" example. It renders a "Hello, world!"
 in the center of the screen.
 
 Before we dig in and explain each part, let's
-**build** and **run** our "game".
+build it and run it!
 
 ## Build the Game
 
@@ -102,20 +102,20 @@ created dist/bundle.js in 513ms
 ## Run the Game
 
 Now that we have a `dist/bundle.js` file, we can test it out using the
-xelly.games [**"utility" tool**](https://xelly.games/utility).
+xelly.games [**"utility" page**](https://xelly.games/utility).
 
 Visit
 [https://xelly.games/utility](https://xelly.games/utility),
 and upload your `dist/bundle.js` file.
 
-:::note
-**Nothing is actually uploaded** to any remote servers by this tool.
+:::tip
+**Nothing is actually uploaded** to any remote servers by this utility page.
 
-The tool uses
-`FileReader.readAsText` (see [these MDN docs](https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsText))
-to read the file _locally_ on your computer and render it for you to test it.
+The page uses
+[`FileReader.readAsText`](https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsText)
+to read the file _locally_ on your computer and render it so you to test it.
 :::
 
 If you followed the steps correctly, you should see "Hello, world!"
 rendered by your game in the center of the game screen and
-_**as it would be rendered**_ in a xelly.games feed.
+_as it would be rendered_ in a xelly.games feed.

@@ -44,11 +44,12 @@ The source code for these two and other "pixelized" games can be found on
 We at **xelly.games** would love to see more games with this aesthetic, with a
 focus on game play over graphics. (Maybe it's because we miss
 our old [Game Boys](https://en.wikipedia.org/wiki/Game_Boy).)
-In any case, we've added first-class support for making games like this to the
-[`@xelly/xelly.js` SDK](https://github.com/xelly-games/xelly.js) via the
-`xel.graphics.fromSprite` function...
 
-## `xel.graphics.fromSprite`
+In any case, we've added first-class support for making games like this to the
+[`@xelly/xelly.js` SDK](https://github.com/xelly-games/xelly.js) via
+a few key `xel.**` utility functions...
+
+## Sprite Creation
 
 ```typescript title="main.ts"
 import * as xel from '@xelly/xelly.js';
@@ -85,7 +86,7 @@ export const install: XellyInstallFunction
     const skull = new Actor({
         anchor: Vector.Zero
     });
-    skull.graphics.use(xel.graphics.fromSprite(context, SkullSprite));
+    skull.graphics.use(xel.graphics.fromSpriteArray(SkullSprite));
     engine.add(skull);
 }
 ```
@@ -104,7 +105,7 @@ We can position (e.g., center) the skull using the dimensions of the graphic pro
     const skull = new Actor({
         anchor: Vector.Zero
     });
-    const skullGraphic = xel.graphics.fromSprite(context, SkullSprite);
+    const skullGraphic = xel.graphics.fromSpriteArray(SkullSprite);
     skull.graphics.use(skullGraphic);
     skull.pos = vec(
         // using Math.floor() to produce integral coordinates gives a
@@ -125,12 +126,6 @@ We can position (e.g., center) the skull using the dimensions of the graphic pro
 That's it! Just a factory for creating pixelized "sprites"/graphics that we can
 use for our games.
 
-:::note
-Whenever you use pixelized sprite graphics created with `xel.graphics.fromSprite`,
-the platform will choose a random color (from a predefined pallete) for your sprite
-pixels. This reduces monotony in feeds with many pixelized games.
-:::
-
 ## Built-in Widgets
 
 ### Keyboard
@@ -150,6 +145,17 @@ export const install: XellyInstallFunction
         animateDepressedKeys: true
     });
     engine.add(keyboard);
+
+    keyboard.on('*keypress', (key: any) => {
+        // handle key presses here
+        // key is an uppercase letter or 'ENTER' or 'DEL' (for the delete key)
+    });
+
+    keyboard.on('initialize', () => {
+        // after the keyboard is initialize you can access it's position
+        // (the keyboard is laid out at the bottom of the screen)
+        console.log(keyboard.pos.y); // e.g.
+    });
     // ...
 }
 ```

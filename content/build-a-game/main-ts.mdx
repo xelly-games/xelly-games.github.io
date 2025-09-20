@@ -45,23 +45,18 @@ utilities.
 
 ## Metadata
 
-The **[xelly.games](https://xelly.games)** platform needs to know a few things
-about your game in order to render it properly in a feed.
+The **[xelly.games](https://xelly.games)** platform needs to know the "type"
+of your game in order to render it properly in a feed.
 
-Therefore, all games must export a `metadata` object:
+All games must export a `metadata` object from `main.ts`:
 
 ```typescript title="src/main.ts"
-// ...
-
-/** Metadata. */
 export const metadata: XellyMetadata = {
     type: XellyGameType.Passive
 };
-
-// ...
 ```
 
-Here, we indicate that the `type` of our game is a **"passive"** game, i.e., it's
+Here, we indicate that the `type` of our game is a **"passive"** game, i.e.,
 not an interactive game. Since this was our "Hello World" example, there's
 no interactivity yet, so `XellyGameType.Passive` is the correct choice here.
 
@@ -90,18 +85,7 @@ The **[xelly.games](https://xelly.games)**
 platform will call this function when the game is loaded (or when the user
 requests to reset/restart the game).
 
-- An [ExcaliburJS](https://excaliburjs.com) `engine` instance is passed to this
-  function. You will never instantiate an `Engine` instance yourself.
-  The platform will configure and install one for you before `install`-ing
-  your game.
-- In our "Hello World" example, we only add a single `Entity` to the engine, a
-  `Label` that says "Hello, world!". We do a little simple math
-  to center the `Label` on the screen:
-
 ```typescript title="src/main.ts"
-// ...
-
-/** Install. */
 export const install: XellyInstallFunction = (context: XellyContext, engine: Engine) => {
     const message = "Hello, world!";
     const messageDimensions = font24.measureText(message);
@@ -113,15 +97,20 @@ export const install: XellyInstallFunction = (context: XellyContext, engine: Eng
             (engine.drawHeight - messageDimensions.height) / 2),
     }));
 };
-
-// ...
 ```
+
+- An [ExcaliburJS](https://excaliburjs.com) `engine` instance is passed to this
+function. You will never instantiate an `Engine` instance yourself.
+The platform will configure and install one for you before calling `install`
+on your game.
+- In this "Hello World" example, we only added a single `Entity` to the engine, a
+"Hello, world!" `Label`. We do a little simple math
+to center the `Label` on the screen.
 
 That's it for "Hello World"!
 
 If you are familiar with [ExcaliburJS](https://excaliburjs.com), you could start
-building out your game from here.
-
-However, you should read through
-[Advanced Topics](../category/advanced-topics)
-before you publish your first game.
+building out your game from here! (Make sure to consult
+the [**submission checklist**](../checklist) before you publish your game!)
+However, we recommend skimming through
+[Advanced Topics](../category/advanced-topics) for a best experience.

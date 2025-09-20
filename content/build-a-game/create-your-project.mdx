@@ -16,7 +16,8 @@ hide_title: true
     <span>Create Your Project</span>
 </h1>
 
-Alright, let's build a game. The project setup part is easy. Create an **empty directory** with just three files:
+Alright, before we build our game we need to set our project up. This part is easy.
+Start by creating a new directory with just three files:
 
 ```
 your-game-project/
@@ -67,7 +68,7 @@ The only thing you need to change here is the `name` field:
 ```
 
 :::tip
-☝️ Make sure you run **`npm install`** in your project directory after
+☝️ Make sure to run **`npm install`** in your project directory after
 creating this `package.json` file.
 :::
 
@@ -75,9 +76,12 @@ creating this `package.json` file.
 
 Note that we've started out with two `"dependencies"`:
 
-- `excalibur`: xelly games are built on top of [ExcaliburJS](https://excaliburjs.com),
-a performant and versatile JavaScript game engine.
-- `@xelly/xelly.js`: the official SDK for xelly.games
+- `excalibur`
+- `@xelly/xelly.js`
+
+Our games are built on top of [ExcaliburJS](https://excaliburjs.com),
+an awesome and versatile game engine, and
+[xelly.js](https://github.com/xelly-games/xelly.js) is the official SDK for xelly.games.
 
 :::tip
 These two are required, but you can add other dependencies as

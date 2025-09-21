@@ -17,8 +17,8 @@ hide_title: true
 
 Before uploading your game to xelly.games:
 
-- [x] Is your game responsive? Have you [tested it](./advanced/testing-your-game) using different mobile device widths?
-- [x] Is the `metadata` (`XellyMetadata`) exported from your game correct, [according to the type of your game](./build-a-game/main-ts#metadata)?
-- [x] Are you emitting a [`xelly:terminate`](./advanced/lifecycle#xellyterminate) event on your `Engine`? (This is required if your game plays can terminate &mdash; for example, in a "win" or "loss" state.)
-- [x] Have you reviewed the xelly.games [Terms of Service](https://xelly.games/static/tos)?
-- [x] Most importantly, did you have fun making your game!?
+- [x] Have you [tested](./advanced/testing-your-game) your game using different mobile device widths?
+- [x] Did you specify the [correct game type](./build-a-game/main-ts#metadata) in the `metadata` exported from your `main.ts` source?
+- [x] Are you emitting a [`xelly:terminate`](./advanced/lifecycle#xellyterminate) event on your `Engine` (if needed)?
+- [x] Have you reviewed the xelly.games [terms of service](https://xelly.games/static/tos)?
+- [x] Did you have fun making your game!?

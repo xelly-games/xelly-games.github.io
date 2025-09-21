@@ -125,6 +125,18 @@ export const install: XellyInstallFunction
 
 This will send our purple ball moving to the right and off the screen.
 
+## Collisions
+
+ExcaliburJS has a built-in collision detection system.
+
+To participate in collision detection (and get [collision events](https://excaliburjs.com/docs/collision-events)),
+our `Actor` must have a [`Collider`](https://excaliburjs.com/docs/colliders).
+
+The default [`CollisionType`](https://excaliburjs.com/docs/collisiontypes) is
+[`Passive`](https://excaliburjs.com/api/enum/CollisionType#Passive), which means
+collision events will be raised on the `Actor` but the `Actor` will not be
+pushed or moved automatically by other `Actor`s.
+
 ## Input
 
 To have our ball stop when the user taps (or clicks) on it, we can add an event listener:

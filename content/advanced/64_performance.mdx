@@ -1,0 +1,53 @@
+---
+title: Performance
+description: Some tips and tricks to improve your game.
+hide_title: true
+---
+
+<h1 style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+    <img
+        src={require('../../static/assets/wired-outline-890-f-1-car-loop-cycle.webp').default}
+        alt="F1 icon"
+        width="48"
+        height="48"
+        style={{ display: 'block' }}
+    />
+    <span>Performance</span>
+</h1>
+
+Games that run inefficiently, such as those with heavy CPU usage or excessive memory allocation
+leading to frequent garbage collection pauses, may receive reduced visibility in user timelines.
+
+## Caching Actors
+
+Caching frequently created actors can prevent garbage collection pauses.
+
+For example, the tetris game example [uses a cache](https://github.com/xelly-games/game-examples/blob/ab77414292d12f9e8d83b0ba069ac6e0324ff546/tetris/src/state.ts#L39)
+to store the tetrominoes instead of creating a new entity/Actor each time a new piece is spawned:
+
+```typescript
+const cache = new Map<string, Piece>();
+
+const getPiece = (type: PieceType) => {
+    const existing = cache.get(type.name);
+    if (existing) {
+        existing.reset(); // reset to clean/initial state
+        return existing;
+    }
+    const piece = new Piece(type);
+    cache.set(type.name, piece);
+    return piece;
+};
+
+// ...
+
+function spawn() {
+    const randomPieceType = random.pickOne(PIECE_TYPES);
+    const piece = getPiece(randomPieceType);
+    // ...
+}
+```
+
+## See Also
+
+* [ExcaliburJS Performance](https://excaliburjs.com/docs/performance/)

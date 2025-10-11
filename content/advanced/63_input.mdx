@@ -1,0 +1,100 @@
+---
+title: Game I/O
+description: xelly.games is optimized for mobile-first use.
+hide_title: true
+---
+
+<h1 style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+    <img
+        src={require('../../static/assets/wired-outline-733-tap-once-hover-pinch.webp').default}
+        alt="F1 icon"
+        width="48"
+        height="48"
+        style={{ display: 'block' }}
+    />
+    <span>Game I/O</span>
+</h1>
+
+[**xelly.games**](https://xelly.games) can be used from both desktop and mobile devices,
+but it's a social experience optimized for mobile usage and play.
+
+Peripheral [keyboard support](https://excaliburjs.com/docs/keyboard) is disabled
+for xelly.games games, but your game can render its own keyboard or graphical
+elements to capture textual input.
+This is common for word games, for example.
+(In fact, the [`@xelly/xelly.js` SDK](https://github.com/xelly-games/xelly.js)
+provides a [keyboard widget](./pixelized-games#keyboard)
+that you can use or fork into your own games.)
+
+Your games should generally be playable via [pointer events](https://excaliburjs.com/docs/pointers),
+i.e., mouse and touch events. Many games simply use only tap/click (pointer) events.
+
+This is a very common way to handle taps on game entities/Actors:
+
+```typescript
+myActor.on('pointerdown', (e: PointerEvent) => {
+    // handle tap/click event
+});
+```
+
+## Patterns
+
+:::warning
+If your game supports input other than simple tap/click inputs (e.g., swipe, drag, etc.),
+then you must declare your
+[game a `Realtime` game in your metadata](../build-a-game/main-ts#metadata):
+
+```typescript
+export const metadata: XellyMetadata = {
+    type: XellyGameType.Realtime // allow pointer move and drag events
+};
+```
+:::
+
+### Swiping the Screen
+
+```typescript
+let startPos: Vector | undefined = undefined;
+engine.input.pointers.primary.on('down', event => {
+    startPos = event.screenPos;
+});
+engine.input.pointers.primary.on('move', event => {
+    if (startPos) {
+        // handle swipe movement
+    }
+});
+engine.input.pointers.primary.on('up', event => {
+    if (startPos) {
+        // handle swipe end
+        startPos = undefined;
+    }
+});
+```
+
+### Dragging an Actor
+
+This code shows how to support the user dragging an Actor with their mouse
+or finger:
+
+```typescript
+let dragOffset: Vector | undefined;
+myActor.on('pointerdragstart', (event) => {
+    dragOffset = event.screenPos.sub(actor.pos);
+});
+myActor.on('pointerdragend', (event) => {
+    dragOffset = undefined;
+});
+// using a top-level/engine 'move' event gives a better experience than
+//  actor.on('pointerdragmove', ...) in the case the pointer ends up
+//  not directly over the actor during the movement:
+engine.input.pointers.primary.on('move', event => {
+    if (dragOffset) {
+        myActor.pos = event.screenPos.sub(dragOffset);
+    }
+});
+```
+
+## Example Games
+
+Also take a look at the source code for [example games](https://github.com/xelly-games/game-examples)
+to see how different I/O patterns are implemented.

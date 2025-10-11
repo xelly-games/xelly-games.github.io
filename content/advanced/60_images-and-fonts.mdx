@@ -15,9 +15,11 @@ hide_title: true
     <span>Game Resources</span>
 </h1>
 
-As [mentioned](./sandboxed), your game is not permitted to make 
-network requests. This means that it can't asynchronously load 
-resources such as images, sprites, fonts, or libraries. Any
+As [previously mentioned](./sandboxed), your game is not permitted to make
+network requests. This means that it can't _asynchronously_ load
+resources such as images, sprites, fonts, or libraries.
+
+Any
 resources needed by your game must be bundled into the game itself,
 i.e., into the final build [output file](../build-a-game/create-your-project.mdx#rollupconfigmjs),
 `bundle.js`.
@@ -25,9 +27,13 @@ i.e., into the final build [output file](../build-a-game/create-your-project.mdx
 ## Images &amp; Sprites
 
 [ExcaliburJS](https://excaliburjs.com/) uses [`ImageSource`](https://excaliburjs.com/docs/imagesource) to 
-represent and load images. To bundle an image resource into your game, 
-you need to import it as a base64-encoded 
-**[data URI](https://developer.mozilla.org/en-US/docs/Web/URI/Reference/Schemes/data)**.
+represent and load images. To bundle an image resource into your game, you have
+a couple of options:
+
+### Import Images as base64-encoded Data URIs
+
+You can import image resources as base64-encoded
+[**data URIs**](https://developer.mozilla.org/en-US/docs/Web/URI/Reference/Schemes/data).
 
 To do this, first encode your image as a **base64 string**. You can find free base64
 encoders online; or, on a Mac or Linux machine, for example, you can use
@@ -76,6 +82,21 @@ export const install: XellyInstallFunction
     
 }
 ```
+
+### Use `ImageSource.fromSvgString` to load SVGs
+
+You can use [`ImageSource.fromSvgString`](https://excaliburjs.com/api/class/ImageSource/#fromSvgString)
+to load SVG files directly from a string; no need to base64-encode them!
+
+```typescript
+const arrowImageSource = ImageSource.fromSvgString(`
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
+...
+</svg>`)
+```
+
+Make sure your `<svg/>` tag has a `width` and `height` attribute.
 
 ## Spritesheets
 

@@ -16,7 +16,8 @@ hide_title: true
     <span>Create Your Project</span>
 </h1>
 
-Alright, before we build our game we need to set our project up. This part is easy.
+Before we build a game, we need to set our project up. This part is easy.
+
 Start by creating a new directory with just three files:
 
 ```
@@ -27,10 +28,10 @@ your-game-project/
 ```
 
 (If you don't already have [Node](https://nodejs.org/)
-with `npm` installed, make sure you **[install it](https://nodejs.org/en/download/)**
+and `npm` installed, make sure you **[install them](https://nodejs.org/en/download/)**
 before proceeding.)
 
-Here are the **three** project files you'll need at the root of your project directory:
+Here are the three project files you'll need at the root of your project directory:
 
 ## `package.json`
 
@@ -79,15 +80,15 @@ Note that we've started out with two `"dependencies"`:
 - `excalibur` (`0.30.3`)
 - `@xelly/xelly.js` (`2.0.3`)
 
-Our games are built on top of [ExcaliburJS](https://excaliburjs.com),
-an awesome and versatile game engine, and
+Our games are built on top of [ExcaliburJS](https://excaliburjs.com)
+(an excellent, versatile game engine) and
 [xelly.js](https://github.com/xelly-games/xelly.js) is the official SDK for xelly.games.
 
 :::tip
-These two are required, but you can add other dependencies as
+These two are required, but you can add other third-party dependencies as
 long as your final game (i.e., `bundle.js` file) is no larger
-than `500kb`, which is the current size limit for games uploaded to
-xelly.games.
+than `500kb` (the current size limit for games uploaded to
+xelly.games).
 :::
 
 ## `rollup.config.mjs`
@@ -98,6 +99,8 @@ We use [Rollup](https://rollupjs.org/) to bundle our game into _**a single outpu
 file**_ (`bundle.js`; an [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) module, to be specific)
 that you will upload to **[xelly.games](https://xelly.games)** when you are
 ready to post your game.
+
+You can copy this file exactly as-is:
 
 ```js title="rollup.config.mjs"
 import typescript from '@rollup/plugin-typescript';
@@ -129,6 +132,8 @@ dependencies are provided at runtime by the xelly.games platform.
 :::
 
 ## `tsconfig.json`
+
+This file can also be copied as-is:
 
 ```json title="tsconfig.json"
 {

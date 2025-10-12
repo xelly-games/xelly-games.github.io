@@ -102,20 +102,21 @@ created dist/bundle.js in 513ms
 ## Run the Game
 
 Now that we have a `dist/bundle.js` file, we can test it out using the
-xelly.games [**"utility" page**](https://xelly.games/utility).
+xelly.games [**"utility" tool**](https://xelly.games/utility).
 
 Visit
 [https://xelly.games/utility](https://xelly.games/utility),
 and upload your `dist/bundle.js` file.
 
 :::tip
-**Nothing is actually uploaded** to any remote servers by this utility page.
+Note that **nothing is uploaded** to any remote servers by this utility page.
 
 The page uses
 [`FileReader.readAsText`](https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsText)
-to read the file _locally_ on your computer and render it so you to test it.
+to read the file _locally_ on your computer and render it so you can test it
+before submitting it.
 :::
 
 If you followed the steps correctly, you should see "Hello, world!"
-rendered by your game in the center of the game screen and
+rendered by your game in the center of the game screen,
 _as it would be rendered_ in a xelly.games feed.

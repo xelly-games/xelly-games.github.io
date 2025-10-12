@@ -17,7 +17,7 @@ hide_title: true
 
 As [previously mentioned](./sandboxed), your game is not permitted to make
 network requests. This means that it can't _asynchronously_ load
-resources such as images, sprites, fonts, or libraries.
+resources such as more code, but also images, sprites, and fonts.
 
 Any
 resources needed by your game must be bundled into the game itself,
@@ -35,9 +35,9 @@ a couple of options:
 You can import image resources as base64-encoded
 [**data URIs**](https://developer.mozilla.org/en-US/docs/Web/URI/Reference/Schemes/data).
 
-To do this, first encode your image as a **base64 string**. You can find free base64
+To do this, first encode your image as a **base64 string**. (You can find free base64
 encoders online; or, on a Mac or Linux machine, for example, you can use
-the `base64` command (i.e.,, `base64 -i my-image.png`).
+the `base64` command; i.e., `base64 -i my-image.png`).
 
 Once you have the base64-encoded string for your image file, you can then copy 
 it into a TypeScript-importable file &mdash; for example, if your image was an
@@ -71,6 +71,7 @@ export const install: XellyInstallFunction
     
     const desiredWidth = 50;
 
+    // we still must go through async loading before we use our image:
     loadImgResources().then(() => {
         const myActor = new Actor({
             anchor: Anchor.Zero,
@@ -100,8 +101,8 @@ Make sure your `<svg/>` tag has a `width` and `height` attribute.
 
 ## Spritesheets
 
-We can also create a [`SpriteSheet`](https://excaliburjs.com/docs/spritesheets) from 
-an [`ImageSource`](https://excaliburjs.com/docs/imagesource):
+We can create [`SpriteSheet`](https://excaliburjs.com/docs/spritesheets)s from
+loaded [`ImageSource`](https://excaliburjs.com/docs/imagesource)s:
 
 ```typescript
 import { ..., ImageSource, SpriteSheet, ... } from 'excalibur';
@@ -120,6 +121,8 @@ loadImgResources().then(() => {
 ```
 
 ## Fonts
+
+Here's how to bundle and load custom fonts:
 
 ```typescript
 import { ..., Font, ... } from 'excalibur';
@@ -157,7 +160,7 @@ You can bundle third-party libraries with your game, as long as your final game
 file isn't larger than the 500kb limit.
 
 (For example, the [example sudoku game](https://github.com/xelly-games/game-examples/tree/main/sudoku-hi-res) uses the 
-[@algorithm.ts/sudoku](https://www.npmjs.com/package/@algorithm.ts/sudoku) to generate
+[@algorithm.ts/sudoku](https://www.npmjs.com/package/@algorithm.ts/sudoku) library  to generate
 game puzzles.)
 
 With our [rollup config](../build-a-game/create-your-project.mdx#rollupconfigmjs), 

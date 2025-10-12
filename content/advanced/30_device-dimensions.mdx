@@ -17,30 +17,31 @@ hide_title: true
 
 import EmbeddedGame from '../EmbeddedGame';
 import {
-    urlGamePokerSolitaire,
-    urlGameGolfSolitaire
+    urlGameGolfSolitaire,
+    urlTetris
 } from '../well-knowns';
 
 Various mobile devices and screen sizes are used to access
 **[xelly.games](https://xelly.games)**.
 
 It's a good idea to make your game responsive, allowing for a range of
-widths &mdash; widths between **340px** to **412px** are good targets.
+game resolution widths &mdash; widths between **340px** to **412px** are good targets.
+
 It's common, for example, to use `engine.drawWidth` and `engine.drawHeight`
 when laying out the entities of your game.
 
 ## Aspect Ratio
 
-When you build your game, you'll target a given **aspect ratio**, one of:
+When you build your game, you'll target one of two supported **aspect ratios**:
 
 - `default` (4:3 ratio)
 - `tall` (≈ 4:5.2 &mdash; or 1.75x taller than the `default` ratio).
 
 You can select the aspect ratio when you upload your game and when testing
-using the ["utility" tool](https://xelly.games/utility).
+using the xelly.games ["utility" tool](https://xelly.games/utility).
 
 Here are some examples. The Golf Solitaire game below uses a
-`default` aspect ratio, while the Poker Solitaire
+`default` aspect ratio, while the Tetris
 game after it uses the `tall` aspect ratio:
 
 <div style={{display: 'flex', gap: '10px', flexWrap: 'wrap'}}>
@@ -50,9 +51,9 @@ game after it uses the `tall` aspect ratio:
 
     <EmbeddedGame
         width={412}
-        src={urlGamePokerSolitaire}/>
+        src={urlTetris}/>
 </div>
 
 <br/>
 
-Hey! Stop playing solitaires, you have more docs to read! ➡️ ➡️ ➡️
+Hey! Stop playing solitaire and Tetris, you have more docs to read! ➡️ ➡️ ➡️

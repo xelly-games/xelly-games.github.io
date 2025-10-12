@@ -25,11 +25,11 @@ As we [saw previously](../build-a-game/main-ts#the-install-function),
 you will not create your own ExcaliburJS
 [`Engine`](https://excaliburjs.com/docs/engine) instance.
 
-The xelly.games platform will instead provide you with an `Engine`
+The xelly.games platform will provide you with an `Engine`
 instance that is already mounted to an HTML `canvas` element, in a
 [sandboxed iframe](./sandboxed), and given a
 [fixed size](https://excaliburjs.com/api/enum/DisplayMode#Fixed) appropriate
-for the user's mobile device and their social feed.
+for the user's mobile device and xelly.games feed.
 
 ```typescript
 export const install: XellyInstallFunction 
@@ -44,27 +44,30 @@ Users will play your games from differently sized mobile devices. You can
 find out the dimensions of your game screen via the `engine.drawWidth` and
 `engine.drawHeight` properties.
 
-:::tip
+:::info
 An iPhone XR, for example, may result in a game resolution width of **379px**,
 an Samsung Galaxy S20 Ultra, **394px**,
 and an iPad or Desktop browser, limited at **412px** ("CSS pixels").
 
-Using the utility tool and [your browser's device simulator](https://developer.chrome.com/docs/devtools/device-mode),
+Using the [utility tool](https://xelly.games/utility) and [your browser's device simulator](https://developer.chrome.com/docs/devtools/device-mode),
 you can test your game on different device sizes.
 
 When you upload and/or test your game you can also select an **aspect ratio**
 of `default` (4:3) or `tall` (≈ 4:5.2, or 1.75x taller than `default`).
-Some games benefit from more vertical real estate.
+Some games, like [tetris](https://xelly.games/game/8c670b68-b5b0-485f-80e3-b6ee3c6ffd43),
+for example, benefit from more vertical real estate.
 
-Read more at [Device Dimensions](./device-dimensions).
+Read more about this topic at [Device Dimensions](./device-dimensions).
 :::
 
+:::tip
 It is common to use `engine.drawWidth` and `engine.drawHeight` to layout your
 game dynamically based on the user's game screen resolution.
+:::
 
 ## Actors
 
-The easiest and most common way to draw something to the screen is to use an
+The easiest and most common way to get something onto the screen is to use an
 [`Actor`](https://excaliburjs.com/docs/actors).
 
 ```typescript
@@ -81,17 +84,17 @@ export const install: XellyInstallFunction
 }
 ```
 
-This gets us a purple ball in the center of the game screen.
+This gets us a purple ball in the center of our game screen.
 
-The `Actor` type represents more than just the visual thing to draw on the screen &mdash;
+The ExcaliburJS `Actor` type represents more than just the visual thing to draw on the screen &mdash;
 it also encapsulates position, motion (linear and angular velocity and
 acceleration), collision detection, and input/output &mdash; all the cool
-stuff you need to make a game.
+capabilities you need to make a game.
 
 ## Graphics
 
-An Actor's [graphic](https://excaliburjs.com/docs/graphics) determines what is
-drawn to the screen.
+An Actor's [**graphic**](https://excaliburjs.com/docs/graphics) determines what is
+drawn to the screen for that Actor/entity.
 
 We used a nice little "cheat" above to get the Actor's **graphic** (and [collider](https://excaliburjs.com/docs/colliders/)!) for free &mdash;
 i.e., by specifying a `radius` and `color` when we construct the actor, ExcaliburJS
@@ -99,12 +102,25 @@ automatically creates a `Circle` graphic (and collider) and sets it on the Actor
 
 When developing games it can be helpful to use this cheat to quickly get something
 rendering and moving on the screen (as a placeholder, say), but typically we will want to set the Actor's
-graphic explicitly to something like a [`Sprite`](https://excaliburjs.com/docs/sprites)
-or [`Animation`](https://excaliburjs.com/docs/animation) or other.
+graphic explicitly to something like a [`Sprite`](https://excaliburjs.com/docs/sprites),
+[`Animation`](https://excaliburjs.com/docs/animation), or other:
+
+```typescript
+// add some *named* graphics
+myActor.graphics.add(myDefaultGraphic);
+myActor.graphics.add('open', myOpenGraphic);
+myActor.graphics.add('squashed', mySquashedGraphic);
+...
+// set the current graphics displayed for the actor
+myActor.graphics.use('squashed');
+...
+// set the current graphics to the default graphic
+myActor.graphics.use('default');
+```
 
 ## Motion
 
-It's pretty easy to set our Actor in motion:
+It's pretty easy to get our Actor in motion:
 
 ```typescript
 export const install: XellyInstallFunction
@@ -137,6 +153,26 @@ The default [`CollisionType`](https://excaliburjs.com/docs/collisiontypes) is
 collision events will be raised on the `Actor` but the `Actor` will not be
 pushed or moved automatically by other `Actor`s.
 
+The geometry that is used for collision detection is determined by the Actor's
+`Collider`.
+
+Simple collider geometrics like circles and rectangles are easily established
+via `Actor` constructor properties &mdash; `radius` for a circle collider and
+`width` and `height` for a rectangular collider:
+
+```typescript
+let actor = new Actor({
+    radius: 50,
+    // if we set a `color`, as well,
+    //   we would automatically get a circle
+    //   *graphic* (as mentioned above)
+    // color: Color.Purple
+});
+```
+
+More complex colliders can be created explicitly, however. See the
+[Colliders documentation](https://excaliburjs.com/docs/colliders/).
+
 ## Input
 
 To have our ball stop when the user taps (or clicks) on it, we can add an event listener:
@@ -163,19 +199,16 @@ export const install: XellyInstallFunction
 };
 ```
 
-But wait! Now we have an _interactive_ game. And so we must use our
-[exported metadata](../build-a-game/main-ts#metadata)
-to indicate that we're a `XellyGameType.Realtime` game:
+But wait!
+
+Now that we've introduced user input, we have a non-passive game.
+We now need to indicate that our game is a `XellyGameType.Realtime` game
+(via our game's [exported metadata](../build-a-game/main-ts#metadata)):
 
 ```typescript
-// ...
-
-/** Metadata. */
 export const metadata: XellyMetadata = {
     type: XellyGameType.Realtime
 };
-
-// ...
 ```
 
 :::warning
@@ -183,7 +216,14 @@ If you don't update your `metadata` export to set `type` to `XellyGameType.Realt
 you will find that the tap handling doesn't work!
 :::
 
-Hey, [would you look at that](https://www.youtube.com/watch?v=EF8GhC-T_Mo)?
-We've built our first real game! It's called
-"Stop the Purple Ball" and maybe
-it's not ready to go viral yet, but it's a start, ain't it?
+Hey, now, [would you look at that](https://www.youtube.com/watch?v=EF8GhC-T_Mo)?
+
+We've built our first real game!
+
+Let's call it
+"Stop the Purple Ball Before it Runs Off the Screen". It might
+not ready to go viral yet, but it's a start, ain't it?
+
+:::tip
+Read more about [Game I/O](./input) here.
+:::

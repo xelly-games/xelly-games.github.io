@@ -22,3 +22,7 @@ export const urlGameWordZap =
     process.env.NODE_ENV !== 'production'
         ? 'http://localhost:8083/embed/9d040148-0517-4066-92b8-0061ea5363b4'
         : 'https://xelly.games/embed/9d040148-0517-4066-92b8-0061ea5363b4';
+export const urlTetris =
+    process.env.NODE_ENV !== 'production'
+        ? 'http://localhost:8083/embed/74968a65-a6d8-4fad-a31e-5239cb7c55f0'
+        : 'https://xelly.games/embed/8c670b68-b5b0-485f-80e3-b6ee3c6ffd43';

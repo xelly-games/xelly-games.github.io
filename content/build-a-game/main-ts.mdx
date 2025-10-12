@@ -57,7 +57,9 @@ export const metadata: XellyMetadata = {
 ```
 
 Here, we indicate that the `type` of our game is a **"passive"** game, i.e.,
-not an interactive game. Since this was our "Hello World" example, there's
+not an interactive game.
+
+Since this was our "Hello World" example, there's
 no interactivity yet, so `XellyGameType.Passive` is the correct choice here.
 
 The other types are:
@@ -65,13 +67,14 @@ The other types are:
 - `XellyGameType.TurnBased`
   - This is for games that are played in a **turn-based** fashion; board, card/solitaire
     games, for example. The xelly.games platform allows `TurnBased` games to accept
-    touch/click events, but a pause button won't be rendered for these games.
+    tap/click events, but a pause button won't be rendered for these games. You also
+    won't receive drag, swipe, or touch/mouse movement events for these games.
 - `XellyGameType.Realtime`
   - This is for **"action"-like games** that are played in real-time (e.g., flappy
     bird, breakout, arcade style games, etc). A pause button will be rendered 
     for these games, and these games will be auto-paused if a user
     scrolls away "mid play". These games also can "terminate" (for example, if 
-    the player character dies) and users will then be able to restart the game.
+    the player character dies).
 - `XellyGameType.Interactive`
   - Interactive games are less common. These are games that are action-oriented
     like realtime games but that do not never terminate (i.e., reach a win or
@@ -100,17 +103,21 @@ export const install: XellyInstallFunction = (context: XellyContext, engine: Eng
 ```
 
 - An [ExcaliburJS](https://excaliburjs.com) `engine` instance is passed to this
-function. You will never instantiate an `Engine` instance yourself.
+function. You will never instantiate an ExcaliburJS `Engine` instance yourself.
 The platform will configure and install one for you before calling `install`
 on your game.
 - In this "Hello World" example, we only added a single `Entity` to the engine, a
 "Hello, world!" `Label`. We do a little simple math
 to center the `Label` on the screen.
+- Your `install` function should set up the initial entities and resources of the game, but
+  the game play itself should not start until the user "enters" the game &mdash;
+  i.e., until the [`xelly:enter` event](../advanced/lifecycle#xellyenter) is emitted.
 
-That's it for "Hello World"!
+That's it for our "Hello World"!
 
 If you are familiar with [ExcaliburJS](https://excaliburjs.com), you could start
 building out your game from here! (Make sure to consult
-the [**submission checklist**](../checklist) before you publish your game!)
+the [**submission checklist**](../checklist) before you publish your game.)
+
 However, we recommend skimming through
-[Advanced Topics](../category/advanced-topics) for a best experience.
+[Advanced Topics](../category/advanced-topics) for the best experience.

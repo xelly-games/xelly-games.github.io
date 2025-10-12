@@ -15,34 +15,13 @@ hide_title: true
     <span>Lifecycle Events</span>
 </h1>
 
-### `xelly:terminate`
-
-Emitted on the game `Engine` _by your game_ when the game has reached a terminal
-state &mdash; such as a win or loss state.
-
-```typescript
-    ...
-    // always emit 'xelly:terminate' when the game is over, win or lose
-    if (isGameWon) {
-        showMessagePanel('You win!');
-        engine.emit('xelly:terminate');
-    } else if (isGameLost) {
-        showMessagePanel('You lose!');
-        engine.emit('xelly:terminate');
-    }
-    ...
-```
-
-:::warning
-If your game is a turn-based or realtime game, **you must emit this event** when the
-game reaches a win or loss state!
-It's how the [xelly.games](https://xelly.games)
-platform knows when to enable certain controls that allow your user to replay the game, for example.
-:::
+When your game is loaded into a user's feed on xelly.games, your `install`
+function is called. But your game should also respond to certain lifecycle
+events:
 
 ### `xelly:enter`
 
-While scrolling their feed, xelly.games users tap (or click) to "enter" a game
+While scrolling their feed, xelly.games users tap (or, on desktops, _click_) to "enter" a game
 and start playing it.
 
 `xelly:enter` is emitted on the game `Engine` _by the platform_ when the user first taps or click
@@ -63,8 +42,36 @@ the user enters the game for the first time:
     ...
 ```
 
+### `xelly:terminate`
+
+This events is emitted _by your game_ on the game `Engine`
+when the game has reached a terminal state &mdash; such as a win or
+loss state.
+
+```typescript
+    ...
+    // always emit 'xelly:terminate' when the game is over, win or lose
+    if (isGameWon) {
+        showMessagePanel('You win!');
+        engine.emit('xelly:terminate');
+    } else if (isGameLost) {
+        showMessagePanel('You lose!');
+        engine.emit('xelly:terminate');
+    }
+    ...
+```
+
+:::warning
+If your game is a turn-based or realtime game, **you must emit this event** when the
+game reaches a win or loss state!
+
+This is how the xelly.games
+platform knows when to enable certain controls that allow your user to restart/replay
+the game, for example.
+:::
+
 ### `xelly:start`
 
-Emitted on the game `Engine` _by the platform_ when the game has finished loading and
+This event is emitted on the game `Engine` _by the platform_ when the game has finished loading and
 initializing (but before a user taps to enter the game play). This event is not
 commonly used, so you can generally ignore it if you don't have a good use for it.

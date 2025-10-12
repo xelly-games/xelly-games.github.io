@@ -108,7 +108,7 @@ When creating a sprite from ASCII art, you can:
       the first 10 colors in the palette array, `a-z` to the next 26 colors, and `A-Z` the next 26 colors
       after that.
 
-:::tip
+:::info
 Any graphic created by `xel.graphics.fromAscii` is **eagerly cropped**; no padding
 or spacing will be left around the sprite even if there are spaces in your ascii
 representation (as we have in our skull above).
@@ -204,7 +204,7 @@ We can add a background, as well:
 not use these for normal positioning of `Actor`/entities in your game.
 
 A common use case for overriding the width and height of a graphic is to
-create a message box, for example:
+create a **message box** or modal, for example:
 
     ![Skull](./img/hello-modal.png)
 :::
@@ -325,26 +325,26 @@ for you:
 
 Many times these simple (box or circle) colliders will be sufficient, but
 you can also have the xelly.js SDK create a more complex (polygon)
-collider for you:
+collider for your pixelized sprite:
 
 ```typescript
-    // ...
-    const spriteArray
-        = xel.create.ascii(AsciiSkull, AsciiSkullPalette);
+// ...
+const spriteArray
+    = xel.create.ascii(AsciiSkull, AsciiSkullPalette);
 
-    const graphic
-        = xel.graphics.fromSpriteArray(spriteArray);
+const graphic
+    = xel.graphics.fromSpriteArray(spriteArray);
 
-    const skull = new Actor({
-        pos: vec(
-            Math.floor(engine.drawWidth / 2),
-            Math.floor(engine.drawHeight / 2))
-    });
-    skull.graphics.use(graphic);
-    // we have to pass the actual sprite array to the colliders.addTo method
-    //   to have xelly.js generate a polygon collider for the sprite:
-    xel.colliders.addTo(skull, spriteArray);
-    engine.add(skull);
+const skull = new Actor({
+    pos: vec(
+        Math.floor(engine.drawWidth / 2),
+        Math.floor(engine.drawHeight / 2))
+});
+skull.graphics.use(graphic);
+// we have to pass the actual sprite array to the colliders.addTo method
+//   to have xelly.js generate a polygon collider for the sprite:
+xel.colliders.addTo(skull, spriteArray);
+engine.add(skull);
 ```
 
 ## Built-in Widgets

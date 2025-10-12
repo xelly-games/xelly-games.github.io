@@ -16,14 +16,16 @@ hide_title: true
 </h1>
 
 Games that run inefficiently, such as those with heavy CPU usage or excessive memory allocation
-leading to frequent garbage collection pauses, may receive reduced visibility in user timelines.
+leading to frequent garbage collection pauses, may receive reduced visibility in user
+timelines/feeds.
 
 ## Caching Actors
 
-Caching frequently created actors can prevent garbage collection pauses.
+Caching frequently created actors is often necessary to prevent garbage collection pauses.
 
-For example, the tetris game example [uses a cache](https://github.com/xelly-games/game-examples/blob/ab77414292d12f9e8d83b0ba069ac6e0324ff546/tetris/src/state.ts#L39)
-to store the tetrominoes instead of creating a new entity/Actor each time a new piece is spawned:
+For example, the [tetris](https://xelly.games/game/8c670b68-b5b0-485f-80e3-b6ee3c6ffd43)
+game example [uses a cache](https://github.com/xelly-games/game-examples/blob/ab77414292d12f9e8d83b0ba069ac6e0324ff546/tetris/src/state.ts#L39)
+to store the tetrominoes instead of creating a new entity/Actor each time a new tetromino/piece is spawned:
 
 ```typescript
 const cache = new Map<string, Piece>();

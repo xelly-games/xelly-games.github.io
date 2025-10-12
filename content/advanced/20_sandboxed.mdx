@@ -15,14 +15,16 @@ hide_title: true
     <span>Sandboxing</span>
 </h1>
 
-Games on xelly.games are
-[**sandboxed**](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/iframe#sandbox)&#185;.
+For security reasons, games running on xelly.games are
+[**sandboxed**](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/iframe#sandbox) &#185;.
 
 This means that your game code is limited in what
-it can do with its browser resources. Most importantly, this includes not being able to
+it can do with browser resources.
+
+Most importantly, this includes it not being able to
 make network calls (use `fetch`, form `POST`, etc).
 
-It also means you can't:
+It also means it can't:
 
 - Access cookies or local storage from the parent domain
 - Access the parent window or its DOM
@@ -35,10 +37,10 @@ Because you can't make network calls from your code, your entire game must be
 deployed as a
 [_single_ build file](../build-a-game/create-your-project.mdx#rollupconfigmjs), and
 any resources such as graphics, sprites, spritesheets, fonts, etc. must be
-bundled into the built output file (typically, `bundle.js`).
+bundled into the built output file (`bundle.js`).
 
-See [Game Resources](./images-and-fonts) for how to compile sprites and fonts
-into your games.
+See [Game Resources](./images-and-fonts) for how to use custom sprites and fonts
+and compile them into your games.
 :::
 
 <hr/>

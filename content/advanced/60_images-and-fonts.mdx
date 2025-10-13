@@ -17,7 +17,12 @@ hide_title: true
 
 As [previously mentioned](./sandboxed), your game is not permitted to make
 network requests. This means that it can't _asynchronously_ load
-resources such as more code, but also images, sprites, and fonts.
+resources such as more code, images, sprites, or fonts.
+
+:::tip
+By the way! [Kenney](https://kenney.nl/) is a great place for finding
+free assets (sprites, etc) for your games.
+:::
 
 Any
 resources needed by your game must be bundled into the game itself,
@@ -27,7 +32,9 @@ i.e., into the final build [output file](../build-a-game/create-your-project.mdx
 ## Images &amp; Sprites
 
 [ExcaliburJS](https://excaliburjs.com/) uses [`ImageSource`](https://excaliburjs.com/docs/imagesource) to 
-represent and load images. To bundle an image resource into your game, you have
+represent and load images.
+
+To bundle an image resource into your game, you have
 a couple of options:
 
 ### Import Images as base64-encoded Data URIs

@@ -89,6 +89,11 @@ These two are required, but you can add other third-party dependencies as
 long as your final game (i.e., `bundle.js` file) is no larger
 than `500kb` (the current size limit for games uploaded to
 xelly.games).
+
+Note that the `500kb` limit does not include the size
+of the `excalibur` library and `@xelly/xelly.js`, which are not
+bundled into your game as they are provided at runtime by the
+xelly.games platform.
 :::
 
 ## `rollup.config.mjs`

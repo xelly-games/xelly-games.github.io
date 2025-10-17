@@ -15,7 +15,27 @@ hide_title: true
     <span>Testing Your Game</span>
 </h1>
 
-Here's a workflow for developing and testing your game.
+There are two ways you can test your game as you develop it:
+
+* `npm run watch:live`
+  * Starts a local development server and opens your game in a browser with hot-reloading enabled
+* https://xelly.games/utility
+  * Requires manual upload of `dist/bundle.js` whenever you change it, but may be useful
+    when you are testing your game with browser [devtools](https://developer.chrome.com/docs/devtools/device-mode)
+
+### Using `npm run watch:live`
+
+If you created your `package.json` per [these instructions](../build-a-game/create-your-project#packagejson),
+then you can run:
+
+```bash
+$ npm run watch:live
+```
+
+This will open a browser window with your game running in it. The game will automatically
+reload whenever you make changes to your game's source code.
+
+### Using xelly.games/utility
 
 1. While actively coding, build your game in "watch mode":
 
@@ -24,7 +44,7 @@ $ npm run watch
 ```
 
 2. As you make code changes, the game will automatically rebuild `dist/bundle.js`.
-You can upload this file to [**xelly.games/utility**](https://xelly.games/utility)
+You can upload this file to [xelly.games/utility](https://xelly.games/utility)
 to test your changes out as you develop. (You will have to re-upload the `bundle.js`
 each time you want test new changes. Note that the utility tool is a local-only tool;
 your game is _not_ uploaded by this tool to xelly.games or anywhere else.)
